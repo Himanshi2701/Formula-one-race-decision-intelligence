@@ -1,0 +1,15 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Notebook output files
+.ipynb_checkpoints/
+
+# Local operational files
+.DS_Store

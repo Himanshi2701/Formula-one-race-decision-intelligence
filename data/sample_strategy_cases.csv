@@ -1,0 +1,6 @@
+lap,position,tyre_age,tyre_compound,gap_to_car_ahead,attack_window,energy_available,overtake_mode,safety_car_probability
+24,4,12.0,Soft,0.7,True,76,True,0.14
+27,3,18.0,Medium,0.4,True,62,True,0.08
+31,5,23.0,Hard,1.2,False,44,False,0.20
+29,6,16.0,Soft,1.0,True,80,True,0.12
+33,2,25.0,Medium,0.9,False,58,False,0.25

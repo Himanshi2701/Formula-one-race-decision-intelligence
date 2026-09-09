@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Race Intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">✦</span>
+                <span class="brand-title">Race IQ</span>
+            </div>
+            <nav class="nav">
+                <a class="nav-item active">Overview</a>
+                <a class="nav-item">Strategy</a>
+                <a class="nav-item">Energy</a>
+                <a class="nav-item">Risk</a>
+                <a class="nav-item">Agents</a>
+            </nav>
+            <div class="sidebar-card">
+                <span class="small-label">Race State</span>
+                <div class="race-state">
+                    <span class="state-dot"></span>
+                    <span>Live Simulation</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <section class="topbar">
+                <div>
+                    <span class="section-tag">F1 2026 Intelligence</span>
+                    <h1>F1 Race Strategy & Decision Intelligence</h1>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn ghost">Scenario</button>
+                    <button class="btn primary">Run Analysis</button>
+                </div>
+            </section>
+
+            <section class="kpis">
+                <div class="kpi-card">
+                    <span class="kpi-label">Risk Score</span>
+                    <span class="kpi-value" id="risk-score">--</span>
+                    <span class="kpi-foot">Overall</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Avg Overtake Prob.</span>
+                    <span class="kpi-value" id="overtake-prob">--</span>
+                    <span class="kpi-foot">Model Output</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Top Confidence</span>
+                    <span class="kpi-value" id="confidence">--</span>
+                    <span class="kpi-foot">Strategy Confidence</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Risk Events</span>
+                    <span class="kpi-value" id="risk-events">--</span>
+                    <span class="kpi-foot">Medium Risk</span>
+                </div>
+            </section>
+
+            <section class="grid">
+                <article class="panel large-panel">
+                    <div class="panel-header">
+                        <div>
+                            <span class="small-label">Recommended Decision</span>
+                            <h2 id="recommended-scenario">--</h2>
+                        </div>
+                        <span class="badge green" id="confidence-badge">--</span>
+                    </div>
+                    <div class="decision-details">
+                        <div>
+                            <span class="label">Lap</span>
+                            <span class="value" id="decision-lap">--</span>
+                        </div>
+                        <div>
+                            <span class="label">Position</span>
+                            <span class="value" id="decision-position">--</span>
+                        </div>
+                        <div>
+                            <span class="label">Expected Value</span>
+                            <span class="value" id="decision-value">--</span>
+                        </div>
+                        <div>
+                            <span class="label">Energy</span>
+                            <span class="value" id="decision-energy">--</span>
+                        </div>
+                    </div>
+                    <div class="explanation" id="decision-explanation">
+                        --
+                    </div>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-header compact">
+                        <div>
+                            <span class="small-label">Risk Engine</span>
+                            <h2>Risk Status</h2>
+                        </div>
+                        <span class="badge orange" id="risk-band">--</span>
+                    </div>
+                    <div class="risk-meter">
+                        <div class="meter">
+                            <div class="meter-fill" id="meter-fill"></div>
+                        </div>
+                        <div class="risk-row">
+                            <span>Failure Probability</span>
+                            <span id="risk-probability">--</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel table-section">
+                <div class="panel-header">
+                    <div>
+                        <span class="small-label">Strategy Scenarios</span>
+                        <h2>Decision Matrix</h2>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lap</th>
+                                <th>Tyre</th>
+                                <th>Scenario</th>
+                                <th>O.P.</th>
+                                <th>Risk</th>
+                                <th>Position Gain</th>
+                                <th>Expected Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="strategy-table">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="agent-grid">
+                <article class="agent-card">
+                    <span class="agent-icon">R</span>
+                    <span class="agent-title">Race Engineer</span>
+                    <p>Tyre health and pace degradation signal.</p>
+                </article>
+                <article class="agent-card">
+                    <span class="agent-icon">S</span>
+                    <span class="agent-title">Strategy Agent</span>
+                    <p>Undercut, overcut and pit windows.</p>
+                </article>
+                <article class="agent-card">
+                    <span class="agent-icon">O</span>
+                    <span class="agent-title">Overtake Agent</span>
+                    <p>Gap, speed delta and energy deployment.</p>
+                </article>
+                <article class="agent-card">
+                    <span class="agent-icon">A</span>
+                    <span class="agent-title">Decision Agent</span>
+                    <p>Risk-aware final recommendation.</p>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
