@@ -5,8 +5,13 @@ app = Flask(__name__)
 engine = RaceDecisionEngine("data/sample_strategy_cases.csv")
 
 @app.route('/')
-def index():
+def dashboard():
     """Serve the dashboard page for the F1 race strategy project."""
+    return render_template('index.html')
+
+@app.route('/dashboard')
+def index():
+    """Route alias for the project dashboard."""
     return render_template('index.html')
 
 @app.route('/api/decision')
