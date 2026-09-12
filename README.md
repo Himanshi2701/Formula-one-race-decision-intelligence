@@ -41,18 +41,6 @@ The dashboard does not answer only "who wins". Instead, it answers:
 
 That is a better risk-analysis and software-engineering story for a project portfolio.
 
-## Why this is a good project story
-
-The project combines the following themes:
-
-- data analysis
-- strategy analysis
-- risk and probability reasoning
-- business-style decision tradeoff analysis
-- ML-style predictive thinking
-- a small dashboard application
-- agentic AI explanation layer
-
 ## Expected project components
 
 - Race scenario model
