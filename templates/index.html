@@ -1,170 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 Race Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Race Strategy & Decision Intelligence</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="shell">
-        <aside class="sidebar">
-            <div class="brand">
-                <span class="brand-icon">✦</span>
-                <span class="brand-title">Race IQ</span>
-            </div>
-            <nav class="nav">
-                <a class="nav-item active">Overview</a>
-                <a class="nav-item">Strategy</a>
-                <a class="nav-item">Energy</a>
-                <a class="nav-item">Risk</a>
-                <a class="nav-item">Agents</a>
-            </nav>
-            <div class="sidebar-card">
-                <span class="small-label">Race State</span>
-                <div class="race-state">
-                    <span class="state-dot"></span>
-                    <span>Live Simulation</span>
-                </div>
-            </div>
-        </aside>
+    <div class="container">
+        <header>
+            <h1>🏎️ F1 Race Strategy & Decision Intelligence</h1>
+            <p>Explainable AI for real-time race decisions</p>
+        </header>
 
-        <main class="main">
-            <section class="topbar">
-                <div>
-                    <span class="section-tag">F1 2026 Intelligence</span>
-                    <h1>F1 Race Strategy & Decision Intelligence</h1>
-                </div>
-                <div class="topbar-actions">
-                    <button class="btn ghost">Scenario</button>
-                    <button class="btn primary">Run Analysis</button>
+        <main>
+            <!-- Health Status -->
+            <section class="health-status">
+                <div id="status-indicator" class="status loading">Connecting...</div>
+            </section>
+
+            <!-- Race State -->
+            <section class="race-state">
+                <h2>Race State</h2>
+                <div class="state-grid">
+                    <div class="state-item">
+                        <span class="label">Race Control:</span>
+                        <span class="value" id="race-control">—</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="label">Weather:</span>
+                        <span class="value" id="weather">—</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="label">Active Aero:</span>
+                        <span class="value" id="aero-mode">—</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="label">Overtake Mode:</span>
+                        <span class="value" id="overtake-mode">—</span>
+                    </div>
                 </div>
             </section>
 
+            <!-- KPIs -->
             <section class="kpis">
-                <div class="kpi-card">
-                    <span class="kpi-label">Risk Score</span>
-                    <span class="kpi-value" id="risk-score">--</span>
-                    <span class="kpi-foot">Overall</span>
-                </div>
-                <div class="kpi-card">
-                    <span class="kpi-label">Avg Overtake Prob.</span>
-                    <span class="kpi-value" id="overtake-prob">--</span>
-                    <span class="kpi-foot">Model Output</span>
-                </div>
-                <div class="kpi-card">
-                    <span class="kpi-label">Top Confidence</span>
-                    <span class="kpi-value" id="confidence">--</span>
-                    <span class="kpi-foot">Strategy Confidence</span>
-                </div>
-                <div class="kpi-card">
-                    <span class="kpi-label">Risk Events</span>
-                    <span class="kpi-value" id="risk-events">--</span>
-                    <span class="kpi-foot">Medium Risk</span>
+                <h2>Key Performance Indicators</h2>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-title">Total Scenarios</div>
+                        <div class="kpi-value" id="kpi-total">0</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Top Confidence</div>
+                        <div class="kpi-value" id="kpi-confidence">0%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Mean Overtake Prob.</div>
+                        <div class="kpi-value" id="kpi-overtake">0%</div>
+                    </div>
+                    <div class="kpi-card high-risk">
+                        <div class="kpi-title">High Risk Events</div>
+                        <div class="kpi-value" id="kpi-high-risk">0</div>
+                    </div>
+                    <div class="kpi-card medium-risk">
+                        <div class="kpi-title">Medium Risk Events</div>
+                        <div class="kpi-value" id="kpi-medium-risk">0</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Overall Risk Score</div>
+                        <div class="kpi-value" id="kpi-risk">0.0</div>
+                    </div>
                 </div>
             </section>
 
-            <section class="grid">
-                <article class="panel large-panel">
-                    <div class="panel-header">
-                        <div>
-                            <span class="small-label">Recommended Decision</span>
-                            <h2 id="recommended-scenario">--</h2>
-                        </div>
-                        <span class="badge green" id="confidence-badge">--</span>
+            <!-- Recommended Strategy -->
+            <section class="recommended-strategy">
+                <h2>🎯 Recommended Strategy</h2>
+                <div class="strategy-card featured">
+                    <div class="strategy-header">
+                        <h3 id="recommended-title">—</h3>
+                        <div class="confidence-badge" id="confidence-badge">—</div>
                     </div>
-                    <div class="decision-details">
-                        <div>
-                            <span class="label">Lap</span>
-                            <span class="value" id="decision-lap">--</span>
+                    <div class="strategy-details">
+                        <p id="recommended-explanation">Loading strategy...</p>
+                    </div>
+                    <div class="strategy-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Expected Value:</span>
+                            <span class="metric-value" id="recommended-value">—</span>
                         </div>
-                        <div>
-                            <span class="label">Position</span>
-                            <span class="value" id="decision-position">--</span>
+                        <div class="metric">
+                            <span class="metric-label">Risk Band:</span>
+                            <span class="metric-value risk-band" id="recommended-risk">—</span>
                         </div>
-                        <div>
-                            <span class="label">Expected Value</span>
-                            <span class="value" id="decision-value">--</span>
-                        </div>
-                        <div>
-                            <span class="label">Energy</span>
-                            <span class="value" id="decision-energy">--</span>
+                        <div class="metric">
+                            <span class="metric-label">Position Gain:</span>
+                            <span class="metric-value" id="recommended-gain">—</span>
                         </div>
                     </div>
-                    <div class="explanation" id="decision-explanation">
-                        --
-                    </div>
-                </article>
-
-                <article class="panel">
-                    <div class="panel-header compact">
-                        <div>
-                            <span class="small-label">Risk Engine</span>
-                            <h2>Risk Status</h2>
-                        </div>
-                        <span class="badge orange" id="risk-band">--</span>
-                    </div>
-                    <div class="risk-meter">
-                        <div class="meter">
-                            <div class="meter-fill" id="meter-fill"></div>
-                        </div>
-                        <div class="risk-row">
-                            <span>Failure Probability</span>
-                            <span id="risk-probability">--</span>
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section class="panel table-section">
-                <div class="panel-header">
-                    <div>
-                        <span class="small-label">Strategy Scenarios</span>
-                        <h2>Decision Matrix</h2>
-                    </div>
-                </div>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Lap</th>
-                                <th>Tyre</th>
-                                <th>Scenario</th>
-                                <th>O.P.</th>
-                                <th>Risk</th>
-                                <th>Position Gain</th>
-                                <th>Expected Value</th>
-                            </tr>
-                        </thead>
-                        <tbody id="strategy-table">
-                        </tbody>
-                    </table>
                 </div>
             </section>
 
-            <section class="agent-grid">
-                <article class="agent-card">
-                    <span class="agent-icon">R</span>
-                    <span class="agent-title">Race Engineer</span>
-                    <p>Tyre health and pace degradation signal.</p>
-                </article>
-                <article class="agent-card">
-                    <span class="agent-icon">S</span>
-                    <span class="agent-title">Strategy Agent</span>
-                    <p>Undercut, overcut and pit windows.</p>
-                </article>
-                <article class="agent-card">
-                    <span class="agent-icon">O</span>
-                    <span class="agent-title">Overtake Agent</span>
-                    <p>Gap, speed delta and energy deployment.</p>
-                </article>
-                <article class="agent-card">
-                    <span class="agent-icon">A</span>
-                    <span class="agent-title">Decision Agent</span>
-                    <p>Risk-aware final recommendation.</p>
-                </article>
+            <!-- All Scenarios -->
+            <section class="all-scenarios">
+                <h2>All Race Scenarios</h2>
+                <div id="scenarios-container" class="scenarios-grid">
+                    <p class="loading">Loading scenarios...</p>
+                </div>
             </section>
         </main>
+
+        <footer>
+            <p>&copy; 2026 F1 Race Strategy & Decision Intelligence | Explainable AI Dashboard</p>
+        </footer>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

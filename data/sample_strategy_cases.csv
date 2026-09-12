@@ -4,3 +4,5 @@ lap,position,tyre_age,tyre_compound,gap_to_car_ahead,attack_window,energy_availa
 31,5,23.0,Hard,1.2,False,44,False,0.20
 29,6,16.0,Soft,1.0,True,80,True,0.12
 33,2,25.0,Medium,0.9,False,58,False,0.25
+35,7,11.5,Soft,0.5,True,85,True,0.05
+19,1,8.0,Hard,0.0,False,90,False,0.02
